@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.Intent;
+
 
 import com.example.smartpantrymanager.database.PantryDatabase;
 import com.example.smartpantrymanager.database.PantryItem;
@@ -40,17 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = PantryDatabase.getInstance(this);
         Toast.makeText(this, "Pantry database connected", Toast.LENGTH_LONG).show();
-        new Thread(() -> {
-            int recipeCount = database.recipeDao().getRecipeCount();
 
-            runOnUiThread(() -> {
-                Toast.makeText(
-                        MainActivity.this,
-                        "Recipes in database: " + recipeCount,
-                        Toast.LENGTH_LONG
-                ).show();
-            });
-        }).start();
 
 
         editTextItemName = findViewById(R.id.editTextItemName);
@@ -244,6 +236,18 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(this::loadPantryItems);
             }).start();
 
+        });
+
+        Button btnSuggestedRecipes = findViewById(R.id.btnSuggestedRecipes);
+
+        btnSuggestedRecipes.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    SuggestedRecipesActivity.class
+            );
+
+            startActivity(intent);
         });
 
 
