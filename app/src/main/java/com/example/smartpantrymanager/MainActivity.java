@@ -10,12 +10,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import android.app.DatePickerDialog;
 import java.util.Calendar;
+import android.util.Log;
 
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.smartpantrymanager.database.PantryDatabase;
 import com.example.smartpantrymanager.database.PantryItem;
@@ -37,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = PantryDatabase.getInstance(this);
+        Toast.makeText(this, "Pantry database connected", Toast.LENGTH_LONG).show();
+        new Thread(() -> {
+            int recipeCount = database.recipeDao().getRecipeCount();
+
+            runOnUiThread(() -> {
+                Toast.makeText(
+                        MainActivity.this,
+                        "Recipes in database: " + recipeCount,
+                        Toast.LENGTH_LONG
+                ).show();
+            });
+        }).start();
 
 
         editTextItemName = findViewById(R.id.editTextItemName);
