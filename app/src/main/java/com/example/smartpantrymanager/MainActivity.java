@@ -304,25 +304,10 @@ public class MainActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
 
-                String[] itemNames = new String[items.size()];
+                PantryAdapter pantryAdapter =
+                        new PantryAdapter(MainActivity.this, items);
 
-                for (int i = 0; i < items.size(); i++) {
-                    PantryItem item = items.get(i);
-
-                    itemNames[i] = item.getName()
-                            + " - Qty: " + item.getQuantity()
-                            + " - " + item.getCategory()
-                            + " - Exp: " + item.getExpiryDate();
-                }
-
-                ArrayAdapter<String> listAdapter =
-                        new ArrayAdapter<>(
-                                MainActivity.this,
-                                android.R.layout.simple_list_item_1,
-                                itemNames
-                        );
-
-                listViewPantry.setAdapter(listAdapter);
+                listViewPantry.setAdapter(pantryAdapter);
             });
 
         }).start();
