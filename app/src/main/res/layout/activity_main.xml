@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter item name"
+        android:minHeight="48dp"
         android:inputType="text"
         />
 
@@ -30,19 +31,23 @@
         android:id="@+id/editTextQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="Enter quantity"
         android:inputType="number" />
 
     <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        />
 
     <EditText
         android:id="@+id/editTextExpiryDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Select expiry date"
+        android:minHeight="48dp"
         android:focusable="false"
         android:clickable="true" />
 
@@ -64,6 +69,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Suggested Recipes"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Settings &amp; Profile"
         android:layout_marginTop="12dp" />
 
 </LinearLayout>
