@@ -79,4 +79,11 @@
         android:text="Settings &amp; Profile"
         android:layout_marginTop="12dp" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        app:menu="@menu/bottom_nav_menu" />
+
 </LinearLayout>

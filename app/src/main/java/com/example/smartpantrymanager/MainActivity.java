@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.content.Intent;
 
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.smartpantrymanager.database.PantryDatabase;
 import com.example.smartpantrymanager.database.PantryItem;
 
@@ -259,6 +259,38 @@ public class MainActivity extends AppCompatActivity {
         btnSettings.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+        });
+
+        BottomNavigationView bottomNavigation =
+                findViewById(R.id.bottomNavigation);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.nav_pantry) {
+                return true;
+
+            } else if (item.getItemId() == R.id.nav_recipes) {
+
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        SuggestedRecipesActivity.class
+                );
+
+                startActivity(intent);
+                return true;
+
+            } else if (item.getItemId() == R.id.nav_settings) {
+
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        SettingsActivity.class
+                );
+
+                startActivity(intent);
+                return true;
+            }
+
+            return false;
         });
 
 
