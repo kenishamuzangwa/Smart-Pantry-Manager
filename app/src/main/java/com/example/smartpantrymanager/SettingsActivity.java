@@ -1,5 +1,5 @@
 package com.example.smartpantrymanager;
-
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.smartpantrymanager.database.PantryDatabase;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -37,6 +39,44 @@ public class SettingsActivity extends AppCompatActivity {
         // Connect the notifications switch
         Switch switchNotifications =
                 findViewById(R.id.switchNotifications);
+
+        // Connect the Clear Pantry button
+        Button btnClearPantry =
+                findViewById(R.id.btnClearPantry);
+
+        // Show confirmation before clearing the pantry
+        btnClearPantry.setOnClickListener(v -> {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Clear Pantry")
+                    .setMessage("Are you sure you want to remove all pantry items?")
+                    .setPositiveButton("Yes, Clear", (dialog, which) -> {
+
+                        // Access the Room database
+                        PantryDatabase database =
+                                PantryDatabase.getInstance(this);
+
+                        // Delete pantry items in the background
+                        new Thread(() -> {
+
+                            database.pantryItemDao().deleteAll();
+
+                            runOnUiThread(() -> {
+
+                                Toast.makeText(
+                                        this,
+                                        "Pantry cleared successfully!",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+
+                            });
+
+                        }).start();
+
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
 
         // Access the app's local settings storage
         SharedPreferences preferences =

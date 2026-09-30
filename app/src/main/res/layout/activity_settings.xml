@@ -106,6 +106,14 @@
             android:textColor="#687568"
             android:lineSpacingExtra="4dp" />
 
+        <Button
+            android:id="@+id/btnClearPantry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Clear Pantry"
+            android:layout_marginTop="24dp" />
+
     </LinearLayout>
 
 </ScrollView>

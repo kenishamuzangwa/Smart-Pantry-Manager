@@ -23,4 +23,7 @@ public interface  PantryItemDao {
     @Delete
     void delete(PantryItem pantryItem);
 
+    @Query("DELETE FROM pantry_items")
+    void deleteAll();
+
 }
