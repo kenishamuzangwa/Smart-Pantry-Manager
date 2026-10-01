@@ -114,33 +114,85 @@ public class MainActivity extends AppCompatActivity {
 
                                 editCategory.setAdapter(categoryAdapter);
 
-                                new android.app.AlertDialog.Builder(MainActivity.this)
-                                        .setTitle("Edit Item")
-                                        .setView(editView)
-                                        .setPositiveButton("Save Changes", (editDialog, editWhich) -> {
+                                android.app.AlertDialog editDialog =
+                                        new android.app.AlertDialog.Builder(MainActivity.this)
+                                                .setTitle("Edit Item")
+                                                .setView(editView)
+                                                .setPositiveButton("Save Changes", null)
+                                                .setNegativeButton("Cancel", null)
+                                                .create();
 
-                                            String newName = editItemName.getText().toString().trim();
-                                            int newQuantity = Integer.parseInt(
-                                                    editQuantity.getText().toString().trim()
-                                            );
-                                            String newExpiryDate = editExpiryDate.getText().toString().trim();
-                                            String newCategory = editCategory.getSelectedItem().toString();
+                                editDialog.setOnShowListener(dialogInterface -> {
 
-                                            selectedItem.setName(newName);
-                                            selectedItem.setQuantity(newQuantity);
-                                            selectedItem.setExpiryDate(newExpiryDate);
-                                            selectedItem.setCategory(newCategory);
+                                    editDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)
+                                            .setOnClickListener(v -> {
 
-                                            new Thread(() -> {
+                                                String newName =
+                                                        editItemName.getText().toString().trim();
 
-                                                database.pantryItemDao().update(selectedItem);
+                                                String newQuantityText =
+                                                        editQuantity.getText().toString().trim();
 
-                                                runOnUiThread(this::loadPantryItems);
+                                                if (newName.isEmpty()) {
+                                                    editItemName.setError("Please enter an item name");
+                                                    return;
+                                                }
 
-                                            }).start();
-                                        })
-                                        .setNegativeButton("Cancel", null)
-                                        .show();
+                                                if (newQuantityText.isEmpty()) {
+                                                    editQuantity.setError("Please enter a quantity");
+                                                    return;
+                                                }
+
+                                                int newQuantity;
+
+                                                try {
+                                                    newQuantity =
+                                                            Integer.parseInt(newQuantityText);
+                                                } catch (NumberFormatException e) {
+                                                    editQuantity.setError("Please enter a valid number");
+                                                    return;
+                                                }
+
+                                                if (newQuantity <= 0) {
+                                                    editQuantity.setError(
+                                                            "Quantity must be greater than 0"
+                                                    );
+                                                    return;
+                                                }
+
+                                                String newExpiryDate =
+                                                        editExpiryDate.getText().toString().trim();
+
+                                                if (newExpiryDate.isEmpty()) {
+                                                    editExpiryDate.setError(
+                                                            "Please select an expiry date"
+                                                    );
+                                                    return;
+                                                }
+
+                                                String newCategory =
+                                                        editCategory.getSelectedItem().toString();
+
+                                                selectedItem.setName(newName);
+                                                selectedItem.setQuantity(newQuantity);
+                                                selectedItem.setExpiryDate(newExpiryDate);
+                                                selectedItem.setCategory(newCategory);
+
+                                                new Thread(() -> {
+
+                                                    database.pantryItemDao().update(selectedItem);
+
+                                                    runOnUiThread(() -> {
+                                                        loadPantryItems();
+                                                        editDialog.dismiss();
+                                                    });
+
+                                                }).start();
+                                            });
+                                });
+
+                                editDialog.show();
+
 
                             })
 
@@ -218,11 +270,34 @@ public class MainActivity extends AppCompatActivity {
             String category = spinnerCategory.getSelectedItem().toString();
             String expiryDate = editTextExpiryDate.getText().toString().trim();
 
-            if (name.isEmpty() || quantityText.isEmpty() || expiryDate.isEmpty()) {
+            if (name.isEmpty()) {
+                editTextItemName.setError("Please enter an item name");
                 return;
             }
 
-            int quantity = Integer.parseInt(quantityText);
+            if (quantityText.isEmpty()) {
+                editTextQuantity.setError("Please enter a quantity");
+                return;
+            }
+
+            if (expiryDate.isEmpty()) {
+                editTextExpiryDate.setError("Please select an expiry date");
+                return;
+            }
+
+            int quantity;
+
+            try {
+                quantity = Integer.parseInt(quantityText);
+            } catch (NumberFormatException e) {
+                editTextQuantity.setError("Please enter a valid number");
+                return;
+            }
+
+            if (quantity <= 0) {
+                editTextQuantity.setError("Quantity must be greater than 0");
+                return;
+            }
 
             PantryItem pantryItem = new PantryItem(
                     name,
