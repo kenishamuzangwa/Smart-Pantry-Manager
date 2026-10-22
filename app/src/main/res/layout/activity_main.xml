@@ -22,6 +22,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp" />
 
+
+
+
     <!-- Welcome message -->
     <TextView
         android:layout_width="match_parent"
@@ -43,44 +46,135 @@
         android:layout_marginBottom="20dp" />
 
 
-    <EditText
-        android:id="@+id/editTextItemName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter item name"
-        android:minHeight="48dp"
-        android:inputType="text"
-        />
-
-    <EditText
-        android:id="@+id/editTextQuantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Enter quantity"
-        android:inputType="number" />
-
-    <Spinner
-        android:id="@+id/spinnerCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        />
-
-    <EditText
-        android:id="@+id/editTextExpiryDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select expiry date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        android:clickable="true" />
-
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD ITEM" />
+        android:minHeight="48dp"
+        android:text="+ Add Pantry Item"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#245A40"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+
+
+    <!-- Pantry Summary Cards -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:weightSum="3">
+
+        <!-- Total Items Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/pantry_item_card">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📦"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items"
+                android:textSize="12sp"
+                android:textColor="#657565" />
+
+            <TextView
+                android:id="@+id/txtTotalItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#245A40" />
+        </LinearLayout>
+
+
+
+        <!-- Categories Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/pantry_item_card">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🗂️"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:textSize="12sp"
+                android:textColor="#657565" />
+
+            <TextView
+                android:id="@+id/txtTotalCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#245A40" />
+        </LinearLayout>
+
+        <!-- Expiring Soon Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/pantry_item_card">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiring"
+                android:textSize="12sp"
+                android:textColor="#657565" />
+
+            <TextView
+                android:id="@+id/txtExpiringSoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#94621D" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
     <TextView
@@ -101,20 +195,6 @@
         android:layout_marginTop="4dp" />
 
 
-    <Button
-        android:id="@+id/btnSuggestedRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Suggested Recipes"
-        android:layout_marginTop="12dp" />
-
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:text="Settings &amp; Profile"
-        android:layout_marginTop="12dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
