@@ -4,20 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:padding="16dp"
+    android:background="@drawable/pantry_item_card"
+    android:elevation="2dp">
 
     <TextView
         android:id="@+id/textItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#245A40"
+        android:paddingBottom="4dp" />
 
     <TextView
         android:id="@+id/textItemDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:textColor="#657565"
+        android:lineSpacingExtra="3dp"
         android:layout_marginTop="4dp" />
 
 </LinearLayout>
