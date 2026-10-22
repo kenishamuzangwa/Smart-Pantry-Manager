@@ -70,128 +70,15 @@ public class MainActivity extends AppCompatActivity {
 
                             .setPositiveButton("Edit", (dialog, which) -> {
 
-                                android.view.View editView =
-                                        getLayoutInflater().inflate(
-                                                R.layout.dialog_edit_item,
-                                                null
-                                        );
-
-                                android.widget.EditText editItemName =
-                                        editView.findViewById(R.id.editItemName);
-
-                                android.widget.EditText editQuantity =
-                                        editView.findViewById(R.id.editQuantity);
-
-                                android.widget.EditText editExpiryDate =
-                                        editView.findViewById(R.id.editExpiryDate);
-
-                                android.widget.Spinner editCategory =
-                                        editView.findViewById(R.id.editCategory);
-
-                                editItemName.setText(selectedItem.getName());
-                                editQuantity.setText(String.valueOf(selectedItem.getQuantity()));
-                                editExpiryDate.setText(selectedItem.getExpiryDate());
-
-                                String[] categories = {
-                                        "Food",
-                                        "Drinks",
-                                        "Snacks",
-                                        "Canned Goods",
-                                        "Grains",
-                                        "Other"
-                                };
-
-                                android.widget.ArrayAdapter<String> categoryAdapter =
-                                        new android.widget.ArrayAdapter<>(
-                                                MainActivity.this,
-                                                android.R.layout.simple_spinner_item,
-                                                categories
-                                        );
-
-                                categoryAdapter.setDropDownViewResource(
-                                        android.R.layout.simple_spinner_dropdown_item
+                                Intent intent = new Intent(
+                                        MainActivity.this,
+                                        AddEditItemActivity.class
                                 );
 
-                                editCategory.setAdapter(categoryAdapter);
+                                intent.putExtra("item_id", selectedItem.getId());
 
-                                android.app.AlertDialog editDialog =
-                                        new android.app.AlertDialog.Builder(MainActivity.this)
-                                                .setTitle("Edit Item")
-                                                .setView(editView)
-                                                .setPositiveButton("Save Changes", null)
-                                                .setNegativeButton("Cancel", null)
-                                                .create();
+                                startActivity(intent);
 
-                                editDialog.setOnShowListener(dialogInterface -> {
-
-                                    editDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)
-                                            .setOnClickListener(v -> {
-
-                                                String newName =
-                                                        editItemName.getText().toString().trim();
-
-                                                String newQuantityText =
-                                                        editQuantity.getText().toString().trim();
-
-                                                if (newName.isEmpty()) {
-                                                    editItemName.setError("Please enter an item name");
-                                                    return;
-                                                }
-
-                                                if (newQuantityText.isEmpty()) {
-                                                    editQuantity.setError("Please enter a quantity");
-                                                    return;
-                                                }
-
-                                                int newQuantity;
-
-                                                try {
-                                                    newQuantity =
-                                                            Integer.parseInt(newQuantityText);
-                                                } catch (NumberFormatException e) {
-                                                    editQuantity.setError("Please enter a valid number");
-                                                    return;
-                                                }
-
-                                                if (newQuantity <= 0) {
-                                                    editQuantity.setError(
-                                                            "Quantity must be greater than 0"
-                                                    );
-                                                    return;
-                                                }
-
-                                                String newExpiryDate =
-                                                        editExpiryDate.getText().toString().trim();
-
-                                                if (newExpiryDate.isEmpty()) {
-                                                    editExpiryDate.setError(
-                                                            "Please select an expiry date"
-                                                    );
-                                                    return;
-                                                }
-
-                                                String newCategory =
-                                                        editCategory.getSelectedItem().toString();
-
-                                                selectedItem.setName(newName);
-                                                selectedItem.setQuantity(newQuantity);
-                                                selectedItem.setExpiryDate(newExpiryDate);
-                                                selectedItem.setCategory(newCategory);
-
-                                                new Thread(() -> {
-
-                                                    database.pantryItemDao().update(selectedItem);
-
-                                                    runOnUiThread(() -> {
-                                                        loadPantryItems();
-                                                        editDialog.dismiss();
-                                                    });
-
-                                                }).start();
-                                            });
-                                });
-
-                                editDialog.show();
 
 
                             })
@@ -264,53 +151,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnAddItem.setOnClickListener(v -> {
-
-            String name = editTextItemName.getText().toString().trim();
-            String quantityText = editTextQuantity.getText().toString().trim();
-            String category = spinnerCategory.getSelectedItem().toString();
-            String expiryDate = editTextExpiryDate.getText().toString().trim();
-
-            if (name.isEmpty()) {
-                editTextItemName.setError("Please enter an item name");
-                return;
-            }
-
-            if (quantityText.isEmpty()) {
-                editTextQuantity.setError("Please enter a quantity");
-                return;
-            }
-
-            if (expiryDate.isEmpty()) {
-                editTextExpiryDate.setError("Please select an expiry date");
-                return;
-            }
-
-            int quantity;
-
-            try {
-                quantity = Integer.parseInt(quantityText);
-            } catch (NumberFormatException e) {
-                editTextQuantity.setError("Please enter a valid number");
-                return;
-            }
-
-            if (quantity <= 0) {
-                editTextQuantity.setError("Quantity must be greater than 0");
-                return;
-            }
-
-            PantryItem pantryItem = new PantryItem(
-                    name,
-                    quantity,
-                    category,
-                    expiryDate
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    AddEditItemActivity.class
             );
 
-            new Thread(() -> {
-                database.pantryItemDao().insert(pantryItem);
-                runOnUiThread(this::loadPantryItems);
-            }).start();
-
+            startActivity(intent);
         });
 
         Button btnSuggestedRecipes = findViewById(R.id.btnSuggestedRecipes);
@@ -386,5 +232,10 @@ public class MainActivity extends AppCompatActivity {
             });
 
         }).start();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadPantryItems();
     }
 }

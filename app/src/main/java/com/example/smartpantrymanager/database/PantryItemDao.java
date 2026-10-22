@@ -17,6 +17,9 @@ public interface  PantryItemDao {
     @Query("SELECT * FROM pantry_items")
     List<PantryItem> getAllItems();
 
+    @Query("SELECT * FROM pantry_items WHERE id = :itemId")
+    PantryItem getItemById(int itemId);
+
     @Update
     void update(PantryItem pantryItem);
 
