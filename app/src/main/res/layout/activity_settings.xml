@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#F7F8F2">
+    android:background="#F7F5EC">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,30 +13,30 @@
         android:padding="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings &amp; Profile"
-            android:textSize="26sp"
+            android:text="⚙️ My Space"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="#26382B"
-            android:layout_marginBottom="8dp" />
+            android:textColor="#245A40"
+            android:layout_marginBottom="6dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Manage your profile and app preferences."
-            android:textSize="14sp"
-            android:textColor="#687568"
-            android:layout_marginBottom="24dp" />
+            android:text="Make your pantry experience your own. 🌿"
+            android:textSize="15sp"
+            android:textColor="#657565"
+            android:layout_marginBottom="28dp" />
 
         <!-- Profile section -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My Profile"
-            android:textSize="18sp"
+            android:text="👤 My Profile"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#26382B"
+            android:textColor="#245A40"
             android:layout_marginBottom="12dp" />
 
         <EditText
@@ -45,8 +45,9 @@
             android:layout_height="wrap_content"
             android:hint="Enter your name"
             android:inputType="textPersonName"
+            android:minHeight="52dp"
             android:padding="14dp"
-            android:backgroundTint="#6B8E6E" />
+            android:backgroundTint="#8BAF87" />
 
         <EditText
             android:id="@+id/editTextProfileEmail"
@@ -54,27 +55,30 @@
             android:layout_height="wrap_content"
             android:hint="Enter your email"
             android:inputType="textEmailAddress"
+            android:minHeight="52dp"
             android:padding="14dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="#6B8E6E" />
+            android:backgroundTint="#8BAF87" />
 
         <Button
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Profile"
+            android:minHeight="50dp"
+            android:text="SAVE PROFILE"
+            android:textStyle="bold"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#557A5C"
+            android:backgroundTint="#245A40"
             android:textColor="#FFFFFF" />
 
         <!-- Preferences section -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Preferences"
-            android:textSize="18sp"
+            android:text="🔔 Preferences"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#26382B"
+            android:textColor="#245A40"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="12dp" />
 
@@ -82,37 +86,42 @@
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
+            android:minHeight="52dp"
             android:text="Enable notifications"
             android:textSize="16sp"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:thumbTint="#245A40"
+            android:trackTint="#8BAF87" />
 
         <!-- About section -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="About"
-            android:textSize="18sp"
+            android:text="🌱 About Smart Pantry"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#26382B"
+            android:textColor="#245A40"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="12dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smart Pantry Manager helps you manage pantry items, track quantities, and discover recipes using ingredients you have available."
-            android:textSize="14sp"
-            android:textColor="#687568"
-            android:lineSpacingExtra="4dp" />
+            android:text="Smart Pantry Manager helps you organise your pantry, track ingredient quantities, and discover delicious recipes using what you already have. Less waste, smarter cooking!"
+            android:textSize="15sp"
+            android:textColor="#657565"
+            android:lineSpacingExtra="5dp" />
 
         <Button
             android:id="@+id/btnClearPantry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="Clear Pantry"
-            android:layout_marginTop="24dp" />
+            android:minHeight="50dp"
+            android:text="CLEAR PANTRY"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="#A94442"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

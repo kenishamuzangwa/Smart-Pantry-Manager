@@ -9,14 +9,39 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <!-- App heading -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Smart Pantry Manager"
+        android:text="🌿 Smart Pantry"
         android:textSize="28sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="24dp" />
+        android:textColor="#245A40"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Welcome message -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome back! 👋"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#245A40" />
+
+    <!-- Short description -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Keep your pantry fresh and organised."
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="#657565"
+        android:layout_marginBottom="20dp" />
+
 
     <EditText
         android:id="@+id/editTextItemName"
@@ -57,12 +82,24 @@
         android:layout_height="wrap_content"
         android:text="ADD ITEM" />
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Pantry 🥬"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#245A40"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
+
     <ListView
         android:id="@+id/listViewPantry"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="4dp" />
+
 
     <Button
         android:id="@+id/btnSuggestedRecipes"

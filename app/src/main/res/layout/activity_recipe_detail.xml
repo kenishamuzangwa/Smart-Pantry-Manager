@@ -11,14 +11,27 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+
         <TextView
             android:id="@+id/txtRecipeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipe Name"
+            android:text="🍲 Recipe Name"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="#245A40"
+            android:paddingBottom="8dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's make something delicious!"
+            android:textSize="15sp"
+            android:textColor="#657565"
             android:paddingBottom="20dp" />
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -26,6 +39,7 @@
             android:text="Ingredients"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="#245A40"
             android:paddingBottom="8dp" />
 
         <TextView
@@ -40,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Instructions"
+            android:textColor="#245A40"
             android:textSize="20sp"
             android:textStyle="bold"
             android:paddingBottom="8dp" />
