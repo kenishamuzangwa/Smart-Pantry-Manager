@@ -19,6 +19,11 @@ The application includes:
 * Notification preference
 * Clear Pantry functionality
 * Bottom navigation
+* Video Presentation
+https://github.com/user-attachments/assets/334fa377-b7b6-4454-8db5-ba1aab8a729b
+
+
+* 
 
 ## Database
 
